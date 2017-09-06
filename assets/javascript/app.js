@@ -4,54 +4,74 @@
 
 $(document).ready(function() {
 
-	//Welcome screen appears
+    //Welcome screen appears
 
-	function welcomeImage() {
-    	var img = $("<img>");
-    	img.attr("src", "assets/images/nasty-welcome.png");
-    	$('#image-container').append(img); 
-};
- welcomeImage();
+    function welcomeImage() {
+        var img = $("<img>");
+        img.attr("src", "assets/images/nasty-welcome.png");
+        $('#image-container').append(img);
+    };
+    welcomeImage();
 
 
-	//Clickable button to begin playing appears
+    //Clickable button to begin playing appears
+    //On click of start
 
-	$("#begin").on("click", function() {
+    $("#begin").on("click", function() {
 
-		
-	})
+        //Welcome info and button disappear
+        $("#image-container").empty();
+        $("#begin").remove();
 
-//On click of start
+        //Timer starts, set to 30 secs
+      
+        var timer = $(".timer").startTimer();
+		$("#counter").append(timer);
 
-	//Welcome info and button disappear
 
-	//Timer starts, set to 30 secs
 
-	//Question appears
+        //Question appears
 
-	//4 answers appear
+    //Bank of questions and answers
 
-//Player clicks
+	var myQuestions = [{
+      question: "Who was the first woman to serve on the U.S. Supreme Court?",
+      answers: ["Abigail Adams",
+        "Ruth Bader Ginsburg",
+        "Sandra Day O'Connor",
+        "Sonia Sotomayor"],
+      correctAnswer: 2
+    	}
 
-	//IF player picks correct answer in time, win msg
+    	];
 
-	//If player picks wrong A, loss msg
+        var currentQuestion = $("#quizQuestions").text(myQuestions);
 
-	//If time runs out, time out msg
+        //4 answers appear
 
-	//Button to continue appears
+    });
 
-//Player clicks replays through the loop of possible Q’s
+    //Player clicks
 
-//On last Q
+    //IF player picks correct answer in time, win msg
 
-	//Start over button appears
+    //If player picks wrong A, loss msg
 
-	//Good job msg appears
+    //If time runs out, time out msg
 
-	//Total count of correct & wrong appear
+    //Button to continue appears
 
-//Start over cycles back to line 2 of this
+    //Player clicks replays through the loop of possible Q’s
+
+    //On last Q
+
+    //Start over button appears
+
+    //Good job msg appears
+
+    //Total count of correct & wrong appear
+
+    //Start over cycles back to line 2 of this
 
 
 });
