@@ -3,30 +3,33 @@
 
 <head>
     <title>Trivia</title>
+    <!--<link rel="stylesheet" type="text/css" href="assets/css/reset.css">-->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-	<div class="container">
-    <div id="quiz-container" class="jumbotron">
-    	<div id="image-container">
-    	</div>
-        <div id="quizQuestions">
-        </div>
-        <br>
-        <div class="container">
-        	<button type="button" class="btn btn-success" id="begin">Begin!</button>
-        	<div class="timer" data-seconds-left=30 id="counter"></div>
+    <div class="container">
+        <div id="quiz-container" class="jumbotron">
+            <div id="image-container">
+            </div>
+            <div id="quizQuestions">
+            </div>
+            <div id="questionAnswers">
+            </div>
+            <br>
+            <div class="container">
+                <button type="button" class="btn btn-success" id="button">Begin!</button>
+                <div class="timer" data-seconds-left=30 id="counter"></div>
+                <div id="correct"></div>
+                <div id="wrong"></div>
+            </div>
         </div>
     </div>
-    </div>
-
-
     <script src="assets/javascript/app.js"></script>
-    <!--<script src="jquery.js"></script>-->
-	<script src="../jQuery-Simple-Timer/jquery.simple.timer.js"></script>
+    <!--<script src="../jQuery-Simple-Timer/jquery.simple.timer.js"></script>-->
 </body>
 
 </html>

@@ -1,8 +1,31 @@
 //Trivia HW Psuedocode
 
+$(document).ready(function() {
+
+var myQuestions = [{
+      question: "Who was the first woman to serve on the U.S. Supreme Court?",
+      answers: ["Abigail Adams",
+        "Ruth Bader Ginsburg",
+        "Sandra Day O'Connor",
+        "Sonia Sotomayor"],
+      correctAnswer: 2
+    	}, {
+      question: "Which civil rights loving woman co-founded a group dedicated to helping homeless young drag queens and trans women of color?",
+      answers: ["Mae Jemison",
+        "Sylvia Rivera",
+        "Bell Hooks",
+        "Bessie Coleman"],
+      correctAnswer: 1
+    	}
+
+    	];
+
+	var correctCount = 0;
+		var wrongCount = 0;
+
 //	At initial load of page
 
-$(document).ready(function() {
+
 
     //Welcome screen appears
 
@@ -17,38 +40,85 @@ $(document).ready(function() {
     //Clickable button to begin playing appears
     //On click of start
 
-    $("#begin").on("click", function() {
+    $("#button").on("click", function() {
 
-        //Welcome info and button disappear
+        //Welcome info and button disappear/change
         $("#image-container").empty();
-        $("#begin").remove();
+        $("#button").text('Next');
 
         //Timer starts, set to 30 secs
       
-        var timer = $(".timer").startTimer();
-		$("#counter").append(timer);
+        //var timer = $(".timer").startTimer();
+		//$("#counter").append(timer);
 
+		$("#correct").append(correctCount);
+		$("#wrong").append(wrongCount);
 
 
         //Question appears
 
-    //Bank of questions and answers
-
-	var myQuestions = [{
-      question: "Who was the first woman to serve on the U.S. Supreme Court?",
-      answers: ["Abigail Adams",
-        "Ruth Bader Ginsburg",
-        "Sandra Day O'Connor",
-        "Sonia Sotomayor"],
-      correctAnswer: 2
-    	}
-
-    	];
-
-        var currentQuestion = $("#quizQuestions").text(myQuestions);
+        //var img1 = $("<img>");
+        //img1.attr("src", "assets/images/kwolek-gloves.jpg");
+        //$('#image-container').append(img1);
 
         //4 answers appear
 
+
+		var qCount = 0;
+
+		function createQuestion() {			
+
+    	$("#quizQuestions").append(myQuestions[qCount].question);
+    	
+
+        //4 answers appear
+
+        debugger;
+
+        for( var j = 0; j < myQuestions[qCount].answers.length; j++ ) {
+        	var answerOptions = $("<button>");
+        	answerOptions.attr('type', 'button');
+        	$("#questionAnswers").append(answerOptions);
+        	answerOptions.attr("class", "list-group-item");
+        	answerOptions.attr('value', myQuestions[qCount].amswers[j]);
+        	answerOptions.after(myQuestions[qCount].amswers[j]);
+
+
+        	// var input = $('<input>');
+        	// $("#questionAnswers").append(input);
+        	// input.attr('type', 'radio');
+        	// input.attr('value', myQuestions[qCount].answers[j]);
+        	// input.after(myQuestions[qCount].answers[j]);
+        	// $("<input>").attr("class", "radio")
+        }
+
+
+
+		};
+
+		/*function whichRadio() {
+			
+
+			}*/
+		})
+
+
+
+		/*var userPick = [];
+
+		$("button").on("click", function() {
+			if (userPick === myQuestions.correctAnswer) {
+				correctCount++;
+
+
+			} else {
+				wrongCount++;
+
+			}
+
+
+		})*/
+   
     });
 
     //Player clicks
@@ -74,4 +144,4 @@ $(document).ready(function() {
     //Start over cycles back to line 2 of this
 
 
-});
+;
