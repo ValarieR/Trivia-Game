@@ -2,30 +2,45 @@
 
 $(document).ready(function() {
 
-var myQuestions = [{
+var myQuestions = [
+		{
       question: "Who was the first woman to serve on the U.S. Supreme Court?",
-      answers: ["Abigail Adams",
-        "Ruth Bader Ginsburg",
-        "Sandra Day O'Connor",
-        "Sonia Sotomayor"],
-      correctAnswer: 2
-    	}, {
+      answers: {
+      	1:"Abigail Adams",
+        2:"Ruth Bader Ginsburg",
+        3:"Sandra Day O'Connor",
+        4:"Sonia Sotomayor"
+    	},
+      correctAnswer: ["3", "Sandra Day O'Connor"]
+    	}, 
+    	{
       question: "Which civil rights loving woman co-founded a group dedicated to helping homeless young drag queens and trans women of color?",
-      answers: ["Mae Jemison",
-        "Sylvia Rivera",
-        "Bell Hooks",
-        "Bessie Coleman"],
-      correctAnswer: 1
+      answers: {
+      	1:"Mae Jemison",
+        2:"Sylvia Rivera",
+        3:"Bell Hooks",
+        4:"Bessie Coleman"
+    	},
+      correctAnswer: ["2", "Sylvia Rivera"]
     	}
 
     	];
 
 	var correctCount = 0;
-		var wrongCount = 0;
+	var wrongCount = 0;
+	var unanswered = 0;
+
+	var timeRemaining = 30;
+	var currentLevel = 0;
+
+	// var quizQuestions = $("#quizQuestions");
+	// var questionAnswers = $("#questionAnswers");
+
+
 
 //	At initial load of page
 
-
+debugger;
 
     //Welcome screen appears
 
@@ -35,6 +50,8 @@ var myQuestions = [{
         $('#image-container').append(img);
     };
     welcomeImage();
+
+    console.log(test);
 
 
     //Clickable button to begin playing appears
@@ -54,7 +71,7 @@ var myQuestions = [{
 		$("#correct").append(correctCount);
 		$("#wrong").append(wrongCount);
 
-
+});
         //Question appears
 
         //var img1 = $("<img>");
@@ -64,60 +81,53 @@ var myQuestions = [{
         //4 answers appear
 
 
-		var qCount = 0;
+		//var qCount = 0;
 
-		function createQuestion() {			
+		
+		function createQuestion(x) {	
+			if (x<myQuestions.length) {
+				$("#quizQuestions").append(myQuestions[x].question);
+				//quizQuestions.html("<h1>" + myQuestions[x].question + "</h1>");
+				$("#questionAnswers").append(myQuestions[x].answers.1);
+				$("#questionAnswers").append(myQuestions[x].answers.2);
+				$("#questionAnswers").append(myQuestions[x].answers.3);
+				$("#questionAnswers").append(myQuestions[x].answers.4);
+					
+			}
+		};		
 
-    	$("#quizQuestions").append(myQuestions[qCount].question);
+console.log(myQuestions[x].answers.1);
+
+   
     	
 
         //4 answers appear
 
-        debugger;
+        //debugger;
 
-        for( var j = 0; j < myQuestions[qCount].answers.length; j++ ) {
-        	var answerOptions = $("<button>");
-        	answerOptions.attr('type', 'button');
-        	$("#questionAnswers").append(answerOptions);
-        	answerOptions.attr("class", "list-group-item");
-        	answerOptions.attr('value', myQuestions[qCount].amswers[j]);
-        	answerOptions.after(myQuestions[qCount].amswers[j]);
-
-
-        	// var input = $('<input>');
-        	// $("#questionAnswers").append(input);
-        	// input.attr('type', 'radio');
-        	// input.attr('value', myQuestions[qCount].answers[j]);
-        	// input.after(myQuestions[qCount].answers[j]);
-        	// $("<input>").attr("class", "radio")
-        }
+        // for( var j = 0; j < myQuestions[x].answers.length; j++ ) {
+        // 	// var answerOptions = $("<button>");
+        // 	// answerOptions.attr('type', 'button');
+        // 	// $("#questionAnswers").append(answerOptions);
+        // 	// answerOptions.attr("class", "list-group-item");
+        // 	// answerOptions.attr('value', myQuestions[x].amswers[j]);
+        // 	// answerOptions.after(myQuestions[x].amswers[j]);
+        // 	// qCount++;
 
 
-
-		};
-
-		/*function whichRadio() {
-			
-
-			}*/
-		})
+        // 	var input = $('<input>');
+        // 	$("#questionAnswers").append(input);
+        // 	input.attr('type', 'radio');
+        // 	input.attr('value', myQuestions[x].answers[j]);
+        // 	input.after(myQuestions[x].answers[j]);
+        // 	//$("<input>").attr("class", "radio")
+        // }
 
 
 
-		/*var userPick = [];
-
-		$("button").on("click", function() {
-			if (userPick === myQuestions.correctAnswer) {
-				correctCount++;
+		
 
 
-			} else {
-				wrongCount++;
-
-			}
-
-
-		})*/
    
     });
 
@@ -144,4 +154,3 @@ var myQuestions = [{
     //Start over cycles back to line 2 of this
 
 
-;
