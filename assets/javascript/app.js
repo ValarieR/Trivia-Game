@@ -2,45 +2,41 @@
 
 $(document).ready(function() {
 
-var myQuestions = [
-		{
-      question: "Who was the first woman to serve on the U.S. Supreme Court?",
-      answers: {
-      	1:"Abigail Adams",
-        2:"Ruth Bader Ginsburg",
-        3:"Sandra Day O'Connor",
-        4:"Sonia Sotomayor"
-    	},
-      correctAnswer: ["3", "Sandra Day O'Connor"]
-    	}, 
-    	{
-      question: "Which civil rights loving woman co-founded a group dedicated to helping homeless young drag queens and trans women of color?",
-      answers: {
-      	1:"Mae Jemison",
-        2:"Sylvia Rivera",
-        3:"Bell Hooks",
-        4:"Bessie Coleman"
-    	},
-      correctAnswer: ["2", "Sylvia Rivera"]
-    	}
+    var myQuestions = [{
+            question: "Who was the first woman to serve on the U.S. Supreme Court?",
+            answers: {
+                1: "Abigail Adams",
+                2: "Ruth Bader Ginsburg",
+                3: "Sandra Day O'Connor",
+                4: "Sonia Sotomayor"
+            },
+            correctAnswer: ["3", "Sandra Day O'Connor"]
+        },
+        {
+            question: "Which civil rights loving woman co-founded a group dedicated to helping homeless young drag queens and trans women of color?",
+            answers: {
+                1: "Mae Jemison",
+                2: "Sylvia Rivera",
+                3: "Bell Hooks",
+                4: "Bessie Coleman"
+            },
+            correctAnswer: ["2", "Sylvia Rivera"]
+        }
 
-    	];
+    ];
 
-	var correctCount = 0;
-	var wrongCount = 0;
-	var unanswered = 0;
+    var correctCount = 0;
+    var wrongCount = 0;
+    var unanswered = 0;
 
-	var timeRemaining = 30;
-	var currentLevel = 0;
-
-	// var quizQuestions = $("#quizQuestions");
-	// var questionAnswers = $("#questionAnswers");
+    var timeRemaining = 30;
+    var currentLevel = 0;
 
 
 
-//	At initial load of page
+    //	At initial load of page
 
-debugger;
+    debugger;
 
     //Welcome screen appears
 
@@ -62,95 +58,101 @@ debugger;
         //Welcome info and button disappear/change
         $("#image-container").empty();
         $("#button").text('Next');
+        $("#button").addClass("next");
 
-        //Timer starts, set to 30 secs
-      
-        //var timer = $(".timer").startTimer();
-		//$("#counter").append(timer);
 
-		$("#correct").append(correctCount);
-		$("#wrong").append(wrongCount);
+        $("#correct").append(correctCount);
+        $("#wrong").append(wrongCount);
+        currentLevel = 0;
+        createQuestion(currentLevel);
+
+    });
+    //Question appears
+    //Timer set and appears
+    //4 answers appear
+
+
+    function timerReset() {
+        timeRemaining = 0;
+        clearInterval(questionIntervalId);
+    };
+
+    function timerMain() {
+        timeRemaining--;
+        $("#counter").append("Time Remaining" + timeRemaining);
+        if (timeRemaining < 0) {
+            incorrectAnswerDisplay();
+            unanswered++;
+            currentLevel++;
+            timerReset();
+
+        }
+    };
+
+
+    function restart() {
+        correctCount = 0;
+        wrongCount = 0;
+        unanswered = 0;
+        currentLevel = 0;
+        createQuestion(currentLevel);
+    }
+
+    function createQuestion(x) {
+        if (x < myQuestions.length) {
+            $("#quizQuestions").append(myQuestions[x].question);
+            $("#questionAnswers").append(myQuestions[x].answers .1);
+            $("#questionAnswers").append(myQuestions[x].answers .2);
+            $("#questionAnswers").append(myQuestions[x].answers .3);
+            $("#questionAnswers").append(myQuestions[x].answers .4);
+
+        }
+
+        questionIntervalId = setInterval(function() {
+            timerFunction();
+        }, 1000);
+    } else { gameEnd(); }
+};
+
+console.log(myQuestions[x].answers .1);
+
+
+function correctAnswer() {
+    $("#questionAnswers").append("The correct answer was" + myQuestions[currentLevel].correctAnswer[1]);
+    answerTimeout = setTimeout(function() {
+        createQuestion(currentLevel);
+    }, 3000);
+}
+
+function wrongAnswer() {
+	$("#questionAnswers").append("Seriously? How didn't you know the answer was" + myQuestions[currentLevel].correctAnswer[1]);
+	answerTimeout = setTimeout(function(){
+		createQuestion(currentLevel);
+	})
+}
+
+function gameOver() {
+	$("#quizQuestions").append("Well done! Try again?");
+	$("#button").text(Yes, please!)
+}
+
+$(".next").on("click", function(){
+        var yourSelection = $(this).attr("value");
+
+        if ((yourSelection == myQuestions[currentLevel].correctAnswer[0]) && (currentLevel < myQuestions.length)) {
+
+            correctCount++;
+            correctAnswer();
+            timerReset();
+            currentLevel++;
+
+        } else {
+
+            wrongCount++;
+            wrongAnswer();
+            timerReset();
+            currentLevel++;
+        }
+    })
 
 });
-        //Question appears
-
-        //var img1 = $("<img>");
-        //img1.attr("src", "assets/images/kwolek-gloves.jpg");
-        //$('#image-container').append(img1);
-
-        //4 answers appear
-
-
-		//var qCount = 0;
-
-		
-		function createQuestion(x) {	
-			if (x<myQuestions.length) {
-				$("#quizQuestions").append(myQuestions[x].question);
-				//quizQuestions.html("<h1>" + myQuestions[x].question + "</h1>");
-				$("#questionAnswers").append(myQuestions[x].answers.1);
-				$("#questionAnswers").append(myQuestions[x].answers.2);
-				$("#questionAnswers").append(myQuestions[x].answers.3);
-				$("#questionAnswers").append(myQuestions[x].answers.4);
-					
-			}
-		};		
-
-console.log(myQuestions[x].answers.1);
-
-   
-    	
-
-        //4 answers appear
-
-        //debugger;
-
-        // for( var j = 0; j < myQuestions[x].answers.length; j++ ) {
-        // 	// var answerOptions = $("<button>");
-        // 	// answerOptions.attr('type', 'button');
-        // 	// $("#questionAnswers").append(answerOptions);
-        // 	// answerOptions.attr("class", "list-group-item");
-        // 	// answerOptions.attr('value', myQuestions[x].amswers[j]);
-        // 	// answerOptions.after(myQuestions[x].amswers[j]);
-        // 	// qCount++;
-
-
-        // 	var input = $('<input>');
-        // 	$("#questionAnswers").append(input);
-        // 	input.attr('type', 'radio');
-        // 	input.attr('value', myQuestions[x].answers[j]);
-        // 	input.after(myQuestions[x].answers[j]);
-        // 	//$("<input>").attr("class", "radio")
-        // }
-
-
-
-		
-
-
-   
-    });
-
-    //Player clicks
-
-    //IF player picks correct answer in time, win msg
-
-    //If player picks wrong A, loss msg
-
-    //If time runs out, time out msg
-
-    //Button to continue appears
-
-    //Player clicks replays through the loop of possible Q’s
-
-    //On last Q
-
-    //Start over button appears
-
-    //Good job msg appears
-
-    //Total count of correct & wrong appear
-
-    //Start over cycles back to line 2 of this
-
-
