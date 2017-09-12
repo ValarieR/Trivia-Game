@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+	$("#questionAnswers").hide();
+
     var myQuestions = [{
             question: "Who was the first woman to serve on the U.S. Supreme Court?",
             answers: {
@@ -56,6 +58,7 @@ $(document).ready(function() {
     $("#button").on("click", function() {
 
         //Welcome info and button disappear/change
+        $("#questionAnswers").show();
         $("#image-container").empty();
         $("#button").text('Next');
         $("#button").addClass("next");
