@@ -60,7 +60,7 @@ $(document).ready(function() {
         //Welcome info and button disappear/change
         $("#questionAnswers").show();
         $("#image-container").empty();
-        $("#button").text('Next');
+        $("#button").hide();
         $("#button").addClass("next");
         $("#correct").text(correctCount);
         $("#wrong").text(wrongCount);
@@ -140,7 +140,7 @@ $(document).ready(function() {
         $("#button").text("Yes, please!")
     }
 
-    $(".next").on("click", function() {
+    $(".answers").on("click", function() {
         var yourSelection = $(this).attr("value");
 
         if ((yourSelection == myQuestions[currentLevel].correctAnswer[0]) && (currentLevel < myQuestions.length)) {
