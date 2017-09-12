@@ -29,12 +29,12 @@ $(document).ready(function() {
     var wrongCount = 0;
     var unanswered = 0;
 
-    var timeRemaining = 30;
+    var timeRemaining = 5;
     var currentLevel = 0;
 
 
 
-    //	At initial load of page
+    //  At initial load of page
 
     debugger;
 
@@ -47,7 +47,7 @@ $(document).ready(function() {
     };
     welcomeImage();
 
-    console.log(test);
+    console.log("test");
 
 
     //Clickable button to begin playing appears
@@ -59,10 +59,8 @@ $(document).ready(function() {
         $("#image-container").empty();
         $("#button").text('Next');
         $("#button").addClass("next");
-
-
-        $("#correct").append(correctCount);
-        $("#wrong").append(wrongCount);
+        $("#correct").text(correctCount);
+        $("#wrong").text(wrongCount);
         currentLevel = 0;
         createQuestion(currentLevel);
 
@@ -75,17 +73,17 @@ $(document).ready(function() {
     function timerReset() {
         timeRemaining = 0;
         clearInterval(questionIntervalId);
+        console.log("we runnin the time reset")
     };
 
     function timerMain() {
         timeRemaining--;
-        $("#counter").append("Time Remaining" + timeRemaining);
+        $("#counter").text("Time Remaining: " + timeRemaining);
         if (timeRemaining < 0) {
-            incorrectAnswerDisplay();
+            // incorrectAnswerDisplay();
             unanswered++;
             currentLevel++;
             timerReset();
-
         }
     };
 
@@ -98,45 +96,48 @@ $(document).ready(function() {
         createQuestion(currentLevel);
     }
 
+    //add div elements to hold these values on the html page
     function createQuestion(x) {
         if (x < myQuestions.length) {
-            $("#quizQuestions").append(myQuestions[x].question);
-            $("#questionAnswers").append(myQuestions[x].answers .1);
-            $("#questionAnswers").append(myQuestions[x].answers .2);
-            $("#questionAnswers").append(myQuestions[x].answers .3);
-            $("#questionAnswers").append(myQuestions[x].answers .4);
+            $("#quizQuestions").text(myQuestions[x].question);
+            $(".answers-1").text(myQuestions[x].answers["1"]);
+            $(".answers-2").text(myQuestions[x].answers["2"]);
+            $(".answers-3").text(myQuestions[x].answers["3"]);
+            $(".answers-4").text(myQuestions[x].answers["4"]);
+            $(".timer").text("Time Remaining: " + timeRemaining);
 
+            questionIntervalId = setInterval(function() {
+                timerMain();
+            }, 1000);
+
+        } else {
+            gameEnd();
         }
-
-        questionIntervalId = setInterval(function() {
-            timerFunction();
-        }, 1000);
-    } else { gameEnd(); }
-};
-
-console.log(myQuestions[x].answers .1);
+            console.log(myQuestions[x].answers["1"]);
+    };
 
 
-function correctAnswer() {
-    $("#questionAnswers").append("The correct answer was" + myQuestions[currentLevel].correctAnswer[1]);
-    answerTimeout = setTimeout(function() {
-        createQuestion(currentLevel);
-    }, 3000);
-}
 
-function wrongAnswer() {
-	$("#questionAnswers").append("Seriously? How didn't you know the answer was" + myQuestions[currentLevel].correctAnswer[1]);
-	answerTimeout = setTimeout(function(){
-		createQuestion(currentLevel);
-	})
-}
+    function correctAnswer() {
+        $("#questionAnswers").append("The correct answer was" + myQuestions[currentLevel].correctAnswer[1]);
+        answerTimeout = setTimeout(function() {
+            createQuestion(currentLevel);
+        }, 3000);
+    }
 
-function gameOver() {
-	$("#quizQuestions").append("Well done! Try again?");
-	$("#button").text(Yes, please!)
-}
+    function wrongAnswer() {
+        $("#questionAnswers").append("Seriously? How didn't you know the answer was" + myQuestions[currentLevel].correctAnswer[1]);
+        answerTimeout = setTimeout(function() {
+            createQuestion(currentLevel);
+        })
+    }
 
-$(".next").on("click", function(){
+    function gameOver() {
+        $("#quizQuestions").append("Well done! Try again?");
+        $("#button").text("Yes, please!")
+    }
+
+    $(".next").on("click", function() {
         var yourSelection = $(this).attr("value");
 
         if ((yourSelection == myQuestions[currentLevel].correctAnswer[0]) && (currentLevel < myQuestions.length)) {
