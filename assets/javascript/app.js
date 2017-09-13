@@ -12,7 +12,7 @@ $(document).ready(function() {
                 3: "Sandra Day O'Connor",
                 4: "Sonia Sotomayor"
             },
-            correctAnswer: ["3", "Sandra Day O'Connor"]
+            correctAnswer: "Sandra Day O'Connor"
         },
         {
             question: "Which civil rights loving woman co-founded a group dedicated to helping homeless young drag queens and trans women of color?",
@@ -22,23 +22,25 @@ $(document).ready(function() {
                 3: "Bell Hooks",
                 4: "Bessie Coleman"
             },
-            correctAnswer: ["2", "Sylvia Rivera"]
+            correctAnswer: "Sylvia Rivera"
         }
 
     ];
+
+
 
     var correctCount = 0;
     var wrongCount = 0;
     var unanswered = 0;
 
-    var timeRemaining = 5;
+    var timeRemaining = 15;
     var currentLevel = 0;
-
+console.log(myQuestions[currentLevel].correctAnswer);
 
 
     //  At initial load of page
 
-    debugger;
+    //debugger;
 
     //Welcome screen appears
 
@@ -114,48 +116,59 @@ $(document).ready(function() {
             }, 1000);
 
         } else {
-            gameEnd();
+            // gameEnd();
         }
-            console.log(myQuestions[x].answers["1"]);
+           // console.log(myQuestions[x].answers["1"]);
     };
 
 
 
     function correctAnswer() {
-        $("#questionAnswers").append("The correct answer was" + myQuestions[currentLevel].correctAnswer[1]);
+    	var correctAnswer = myQuestions[currentLevel].correctAnswer;
+
+        $("#quizQuestions").append("The correct answer was" + myQuestions[currentLevel].correctAnswer);
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        }, 3000);
+        }, 5000);
     }
 
     function wrongAnswer() {
-        $("#questionAnswers").append("Seriously? How didn't you know the answer was" + myQuestions[currentLevel].correctAnswer[1]);
+        $("#quizQuestions").append("Seriously? How didn't you know the answer was" + myQuestions[currentLevel].correctAnswer);
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
         })
     }
 
-    function gameOver() {
-        $("#quizQuestions").append("Well done! Try again?");
+    function gameEnd() {
+        $("#quizQuestions").text("Well done! Try again?");
+        $("#button").show();
         $("#button").text("Yes, please!")
     }
 
     $(".answers").on("click", function() {
         var yourSelection = $(this).attr("value");
 
-        if ((yourSelection == myQuestions[currentLevel].correctAnswer[0]) && (currentLevel < myQuestions.length)) {
+        // console.log('this is my current level ' + myQuestions[currentLevel]);
+        // console.log('this is my correct answer ' + myQuestions[currentLevel].correctAnswer);
+        
+        if ((yourSelection === myQuestions[currentLevel].correctAnswer) && (currentLevel < myQuestions.length)) {
 
             correctCount++;
             correctAnswer();
             timerReset();
+            console.log('if statement is true - interating currentLevel')
             currentLevel++;
 
-        } else {
+        } 
+
+        else {
 
             wrongCount++;
             wrongAnswer();
             timerReset();
+            console.log('if statement is false - interating currentLevel')
             currentLevel++;
+            gameEnd();
         }
     })
 
