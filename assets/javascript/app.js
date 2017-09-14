@@ -66,7 +66,7 @@ console.log(myQuestions[currentLevel].correctAnswer);
         $("#button").addClass("next");
         $("#correct").text(correctCount);
         $("#wrong").text(wrongCount);
-        currentLevel = 0;
+        //currentLevel = 0;
         createQuestion(currentLevel);
 
     });
@@ -84,22 +84,20 @@ console.log(myQuestions[currentLevel].correctAnswer);
     function timerMain() {
         timeRemaining--;
         $("#counter").text("Time Remaining: " + timeRemaining);
-        if (timeRemaining < 0) {
-            // incorrectAnswerDisplay();
-            unanswered++;
-            currentLevel++;
+        if (timeRemaining = 0) {
             timerReset();
+            wrongAnswer();
         }
     };
 
 
-    function restart() {
-        correctCount = 0;
-        wrongCount = 0;
-        unanswered = 0;
-        currentLevel = 0;
-        createQuestion(currentLevel);
-    }
+    // function restart() {
+    //     correctCount = 0;
+    //     wrongCount = 0;
+    //     unanswered = 0;
+    //     currentLevel = 0;
+    //     createQuestion(currentLevel);
+    // }
 
     //add div elements to hold these values on the html page
     function createQuestion(x) {
@@ -116,7 +114,7 @@ console.log(myQuestions[currentLevel].correctAnswer);
             }, 1000);
 
         } else {
-            // gameEnd();
+            gameEnd();
         }
            // console.log(myQuestions[x].answers["1"]);
     };
@@ -136,7 +134,7 @@ console.log(myQuestions[currentLevel].correctAnswer);
         $("#quizQuestions").append("Seriously? How didn't you know the answer was" + myQuestions[currentLevel].correctAnswer);
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        })
+        }, 5000);
     }
 
     function gameEnd() {
@@ -153,17 +151,16 @@ console.log(myQuestions[currentLevel].correctAnswer);
         
         if ((yourSelection === myQuestions[currentLevel].correctAnswer) && (currentLevel < myQuestions.length)) {
 
-            correctCount++;
             correctAnswer();
             timerReset();
             console.log('if statement is true - interating currentLevel')
             currentLevel++;
+            createQuestion();
 
         } 
 
         else {
 
-            wrongCount++;
             wrongAnswer();
             timerReset();
             console.log('if statement is false - interating currentLevel')
