@@ -23,6 +23,76 @@ $(document).ready(function() {
                 4: "Bessie Coleman"
             },
             correctAnswer: "Sylvia Rivera"
+        },
+        {
+            question: "What did Stephanie Kwolek invent in 1965?",
+            answers: {
+                1: "Kevlar",
+                2: "Valium",
+                3: "Permanent-press Fabric",
+                4: "NutraSweet"
+            },
+            correctAnswer: "Kevlar"
+        },
+        {
+            question: "This woman is widely considered to be the first computer programmer, as she created the first algorithm intended to be carried out by a general use computer.",
+            answers: {
+                1: "Mary Somerville",
+                2: "Grace Hopper",
+                3: "Ada Lovelace",
+                4: "Mary Shelley"
+            },
+            correctAnswer: "Ada Lovelace"
+        },
+        {
+            question: "Constant sex-based discrimination in the work place, and at university, led this woman to dedicate her life to fighting for gender equality. She literally wrote the textbook on gender discrimination, after completing law school while raising a toddler.",
+            answers: {
+                1: "Sandra Day O'Connor",
+                2: "Ruth Bader Ginsburg",
+                3: "Hilary Clinton",
+                4: "Gloria Allred"
+            },
+            correctAnswer: "Ruth Bader Ginsburg"
+        },
+        {
+            question: "This ballerina was not able to tour parts of the American South, for fear of safety due to her race. Despite this sort of limitation, in 1951 she won the Donaldson Award for best dancer on Broadway.",
+            answers: {
+                1: "Patricia Johnson",
+                2: "Debra Austin",
+                3: "Raven Wilkinson",
+                4: "Janet Collins"
+            },
+            correctAnswer: "Janet Collins"
+        },
+        {
+            question: "This judoka became the first ever American to win Olympic gold; male or female. After winning, she has worked to raise awareness surrounding sexual abuse, and encourages female vicitms to fight back, and thrive.",
+            answers: {
+                1: "Kayla Harrison",
+                2: "Sandra Bacher",
+                3: "Ronda Rousey",
+                4: "Marti Malloy"
+            },
+            correctAnswer: "Kayla Harrison"
+        },
+        {
+            question: "While President of the American Association for the Advancement of Science in 1975 she presided over the passage of a AAAS policy statement deploring discrimination against gay and lesbian scientists. She helped pioneer, through cross-cultural studies, greater understanding for the natural variety of sexual behaviors that occur in human societies.",
+            answers: {
+                1: "Elizabeth Blackwell",
+                2: "Mary Coble",
+                3: "Margaret Mead",
+                4: "Nancy Pelosi"
+            },
+            correctAnswer: "Margaret Mead"
+        },
+        {
+            question: "Who was the first Black woman to serve as the US National Security Adviser?. She was also the first Black female to hold the position of provost at Stanford University.",
+            answers: {
+                1: "Kamala Harris",
+                2: "Condoleezza Rice",
+                3: "Maxine Waters",
+                4: "Donna Edwards"
+            },
+            correctAnswer: "Condoleezza Rice"
         }
 
     ];
@@ -62,10 +132,10 @@ console.log(myQuestions[currentLevel].correctAnswer);
         //Welcome info and button disappear/change
         $("#questionAnswers").show();
         $("#image-container").empty();
-        $("#button").hide();
-        $("#button").addClass("next");
-        $("#correct").text(correctCount);
-        $("#wrong").text(wrongCount);
+        $("#button").remove();
+        //$("#button").addClass("next");
+        // $("#correct").text(correctCount);
+        // $("#wrong").text(wrongCount);
         //currentLevel = 0;
         createQuestion(currentLevel);
 
@@ -84,9 +154,9 @@ console.log(myQuestions[currentLevel].correctAnswer);
     function timerMain() {
         timeRemaining--;
         $("#counter").text("Time Remaining: " + timeRemaining);
-        if (timeRemaining = 0) {
+        if (timeRemaining < 0) {
             timerReset();
-            wrongAnswer();
+            //wrongAnswer();
         }
     };
 
@@ -127,20 +197,24 @@ console.log(myQuestions[currentLevel].correctAnswer);
         $("#quizQuestions").append("The correct answer was" + myQuestions[currentLevel].correctAnswer);
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        }, 5000);
+        }, 3000);
+        timerReset();
     }
 
     function wrongAnswer() {
-        $("#quizQuestions").append("Seriously? How didn't you know the answer was" + myQuestions[currentLevel].correctAnswer);
+        $("#quizQuestions").append("The answer was" + myQuestions[currentLevel].correctAnswer);
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        }, 5000);
+        }, 3000);
+        timerReset();
     }
 
     function gameEnd() {
         $("#quizQuestions").text("Well done! Try again?");
         $("#button").show();
         $("#button").text("Yes, please!")
+        $("#correct").text(correctCount);
+        $("#wrong").text(wrongCount);
     }
 
     $(".answers").on("click", function() {
