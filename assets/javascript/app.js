@@ -6,6 +6,7 @@ $(document).ready(function() {
 
     var myQuestions = [{
             question: "Who was the first woman to serve on the U.S. Supreme Court?",
+            image: "assets/images/OConnor.jpg",
             answers: {
                 1: "Abigail Adams",
                 2: "Ruth Bader Ginsburg",
@@ -16,6 +17,7 @@ $(document).ready(function() {
         },
         {
             question: "Which civil rights loving woman co-founded a group dedicated to helping homeless young drag queens and trans women of color?",
+            image: "",
             answers: {
                 1: "Mae Jemison",
                 2: "Sylvia Rivera",
@@ -26,6 +28,7 @@ $(document).ready(function() {
         },
         {
             question: "What did Stephanie Kwolek invent in 1965?",
+            image: "",
             answers: {
                 1: "Kevlar",
                 2: "Valium",
@@ -36,6 +39,7 @@ $(document).ready(function() {
         },
         {
             question: "This woman is widely considered to be the first computer programmer, as she created the first algorithm intended to be carried out by a general use computer.",
+            image: "",
             answers: {
                 1: "Mary Somerville",
                 2: "Grace Hopper",
@@ -46,6 +50,7 @@ $(document).ready(function() {
         },
         {
             question: "Constant sex-based discrimination in the work place, and at university, led this woman to dedicate her life to fighting for gender equality. She literally wrote the textbook on gender discrimination, after completing law school while raising a toddler.",
+            image: "",
             answers: {
                 1: "Sandra Day O'Connor",
                 2: "Ruth Bader Ginsburg",
@@ -56,6 +61,7 @@ $(document).ready(function() {
         },
         {
             question: "This ballerina was not able to tour parts of the American South, for fear of safety due to her race. Despite this sort of limitation, in 1951 she won the Donaldson Award for best dancer on Broadway.",
+            image: "",
             answers: {
                 1: "Patricia Johnson",
                 2: "Debra Austin",
@@ -66,6 +72,7 @@ $(document).ready(function() {
         },
         {
             question: "This judoka became the first ever American to win Olympic gold; male or female. After winning, she has worked to raise awareness surrounding sexual abuse, and encourages female vicitms to fight back, and thrive.",
+            image: "",
             answers: {
                 1: "Kayla Harrison",
                 2: "Sandra Bacher",
@@ -76,6 +83,7 @@ $(document).ready(function() {
         },
         {
             question: "While President of the American Association for the Advancement of Science in 1975 she presided over the passage of a AAAS policy statement deploring discrimination against gay and lesbian scientists. She helped pioneer, through cross-cultural studies, greater understanding for the natural variety of sexual behaviors that occur in human societies.",
+            image: "",
             answers: {
                 1: "Elizabeth Blackwell",
                 2: "Mary Coble",
@@ -86,6 +94,7 @@ $(document).ready(function() {
         },
         {
             question: "Who was the first Black woman to serve as the US National Security Adviser?. She was also the first Black female to hold the position of provost at Stanford University.",
+            image: "",
             answers: {
                 1: "Kamala Harris",
                 2: "Condoleezza Rice",
@@ -103,8 +112,9 @@ $(document).ready(function() {
     var wrongCount = 0;
     var unanswered = 0;
 
-    var timeRemaining = 15;
+    var timeRemaining = 10;
     var currentLevel = 0;
+
 console.log(myQuestions[currentLevel].correctAnswer);
 
 
@@ -146,7 +156,7 @@ console.log(myQuestions[currentLevel].correctAnswer);
 
 
     function timerReset() {
-        timeRemaining = 0;
+        timeRemaining = 10;
         clearInterval(questionIntervalId);
         console.log("we runnin the time reset")
     };
@@ -169,6 +179,17 @@ console.log(myQuestions[currentLevel].correctAnswer);
     //     createQuestion(currentLevel);
     // }
 
+    function addImage(){
+       //var questionImage = myQuestions[currentLevel].image;
+
+       var newImgDiv = $("<img>");
+       newImgDiv.addClass("show-image img-rounded img-responsive");
+       newImgDiv.attr("src", myQuestions[currentLevel].image);
+       $("#answerImage").append(newImgDiv);
+       //newImgDiv.append(questionImage);
+
+    };
+
     //add div elements to hold these values on the html page
     function createQuestion(x) {
         if (x < myQuestions.length) {
@@ -178,6 +199,8 @@ console.log(myQuestions[currentLevel].correctAnswer);
             $(".answers-3").text(myQuestions[x].answers["3"]);
             $(".answers-4").text(myQuestions[x].answers["4"]);
             $(".timer").text("Time Remaining: " + timeRemaining);
+            
+            $("#answerImage").empty();
 
             questionIntervalId = setInterval(function() {
                 timerMain();
@@ -197,20 +220,24 @@ console.log(myQuestions[currentLevel].correctAnswer);
         $("#quizQuestions").append("The correct answer was" + myQuestions[currentLevel].correctAnswer);
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        }, 3000);
+        }, 5000);
         timerReset();
+        addImage();
+        correctCount++;
     }
 
     function wrongAnswer() {
         $("#quizQuestions").append("The answer was" + myQuestions[currentLevel].correctAnswer);
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        }, 3000);
+        }, 5000);
         timerReset();
+        addImage();
+        wrongCount++;
     }
 
     function gameEnd() {
-        $("#quizQuestions").text("Well done! Try again?");
+        $("#quizQuestions").text("Well done!");
         $("#button").show();
         $("#button").text("Yes, please!")
         $("#correct").text(correctCount);
