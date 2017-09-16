@@ -7,13 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Roboto" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
     <div class="container">
-        <div id="quiz-container" class="jumbotron">
+        <div id="quiz-container">
+        	<p id="welcome">Welcome to Nasty Trivia! Test your knowledge about a few brave, bright, creative, butt-kicking ladies. Press Begin when you're ready!</p>
+        	<div class="crossorigin">
             <div id="image-container">
             </div>
             <div id="quizQuestions">
@@ -26,15 +29,16 @@
             </div>
             <br>
             <div class="container">
-                <button type="button" class="btn btn-success" id="button">Begin!</button>
+                <button type="button" class="btn" id="button">Begin!</button>
                 <div class="timer" data-seconds-left=30 id="counter"></div>
                 <div id="correct"></div>
                 <div id="wrong"></div>
             </div>
             <div id="answerImage">
-            	<img src="assets/images/template.png">
+            	<!--<img src="assets/images/template.png">-->
             </div>
         </div>
+    </div>
     </div>
     <script src="assets/javascript/app.js"></script>
     <!--<script src="../jQuery-Simple-Timer/jquery.simple.timer.js"></script>-->

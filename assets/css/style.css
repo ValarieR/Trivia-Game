@@ -1,11 +1,24 @@
-.jst-hours {
-	display: none;
+body {
+    background-image: url("../images/nasty-woman-pin.jpeg");
+    background-repeat: repeat;
 }
 
-.jst-minutes {
-	display: none;
+#quizQuestions {
+	font-size: 30px;
+	font-family: 'Patrick Hand SC', cursive;
 }
 
-#move-to-side {
-	
+#quiz-container {
+	max-width: 650px;
+	background-color: white;
+	padding: 50px;
+}
+
+#welcome {
+	font-family: 'Patrick Hand SC', cursive;
+	font-size: 32px;
+}
+
+button {
+	color: #ee6179;
 }

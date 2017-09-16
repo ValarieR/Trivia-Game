@@ -82,7 +82,7 @@ $(document).ready(function() {
             correctAnswer: "Kayla Harrison"
         },
         {
-            question: "While President of the American Association for the Advancement of Science in 1975 she presided over the passage of a AAAS policy statement deploring discrimination against gay and lesbian scientists. She helped pioneer, through cross-cultural studies, greater understanding for the natural variety of sexual behaviors that occur in human societies.",
+            question: "While President of the American Association for the Advancement of Science in 1975 she presided over the passage of a AAAS policy statement deploring discrimination against gay and lesbian scientists. She helped pioneer greater understanding for the natural variety of sexual behaviors that occur in human societies.",
             image: "assets/images/Mead.jpg",
             answers: {
                 1: "Elizabeth Blackwell",
@@ -112,7 +112,7 @@ $(document).ready(function() {
     var wrongCount = 0;
     var unanswered = 0;
 
-    var timeRemaining = 15;
+    var timeRemaining = 16;
     var currentLevel = 0;
 
 
@@ -143,6 +143,7 @@ $(document).ready(function() {
         //Welcome info and button disappear/change
         $("#questionAnswers").show();
         $("#image-container").empty();
+        $("#welcome").remove();
         $("#button").remove();
         //$("#button").addClass("next");
         // $("#correct").text(correctCount);
@@ -157,7 +158,7 @@ $(document).ready(function() {
 
 
     function timerReset() {
-        timeRemaining = 15;
+        timeRemaining = 16;
         clearInterval(questionIntervalId);
         console.log("we runnin the time reset");
     };
@@ -165,7 +166,7 @@ $(document).ready(function() {
     function timerMain() {
         timeRemaining--;
         $("#counter").text("Time Remaining: " + timeRemaining);
-        if (timeRemaining < 0) {
+        if (timeRemaining < 1) {
             timerReset();
             wrongAnswer();
         }
@@ -186,7 +187,7 @@ $(document).ready(function() {
         var newImgDiv = $("<img>");
         newImgDiv.addClass("show-image img-rounded img-responsive");
         newImgDiv.attr("src", myQuestions[currentLevel].image);
-        $("#answerImage").append(newImgDiv);
+        $("#answerImage").prepend(newImgDiv);
         //newImgDiv.append(questionImage);
 
     };
@@ -218,10 +219,10 @@ $(document).ready(function() {
     function correctAnswer() {
         var correctAnswer = myQuestions[currentLevel].correctAnswer;
 
-        $("#quizQuestions").append("The correct answer was" + myQuestions[currentLevel].correctAnswer);
+        $("#quizQuestions").text("My Sister! Of course the correct answer was " + myQuestions[currentLevel].correctAnswer + "!");
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        }, 5000);
+        }, 7000);
         timerReset();
         addImage();
         correctCount++;
@@ -229,10 +230,10 @@ $(document).ready(function() {
     }
 
     function wrongAnswer() {
-        $("#quizQuestions").append("The answer was" + myQuestions[currentLevel].correctAnswer);
+        $("#quizQuestions").text("Sorry, Bro. The correct answer was " + myQuestions[currentLevel].correctAnswer + ".");
         answerTimeout = setTimeout(function() {
             createQuestion(currentLevel);
-        }, 5000);
+        }, 7000);
         timerReset();
         addImage();
         wrongCount++;
@@ -240,11 +241,11 @@ $(document).ready(function() {
     }
 
     function gameEnd() {
-        $("#quizQuestions").text("Well done!");
+       // $("#quizQuestions").text("Well done!");
         $("#button").show();
         $("#button").text("Yes, please!")
-        $("#correct").text(correctCount);
-        $("#wrong").text(wrongCount);
+        $("#correct").text("Correct:" + correctCount);
+        $("#wrong").text("Incorrect:" + wrongCount);
     }
 
     $(".answers").on("click", function() {
