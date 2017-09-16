@@ -1,8 +1,10 @@
-//Trivia HW Psuedocode
+//Trivia HW 
 
 $(document).ready(function() {
 
     $("#questionAnswers").hide();
+
+    // My array of questions, answers, images, and correct answers
 
     var myQuestions = [{
             question: "Who was the first woman to serve on the U.S. Supreme Court?",
@@ -106,7 +108,7 @@ $(document).ready(function() {
 
     ];
 
-
+    // Global variables
 
     var correctCount = 0;
     var wrongCount = 0;
@@ -121,9 +123,8 @@ $(document).ready(function() {
 
     //  At initial load of page
 
-    //debugger;
-
     //Welcome screen appears
+    //Clickable button to begin playing appears
 
     function welcomeImage() {
         var img = $("<img>");
@@ -134,9 +135,7 @@ $(document).ready(function() {
 
     console.log("test");
 
-
-    //Clickable button to begin playing appears
-    //On click of start
+    //On click of Begin button
 
     $("#button").on("click", function() {
 
@@ -152,10 +151,8 @@ $(document).ready(function() {
         createQuestion(currentLevel);
 
     });
-    //Question appears
-    //Timer set and appears
-    //4 answers appear
 
+    // Two timer functions, one for basic operation, one for resetting
 
     function timerReset() {
         timeRemaining = 16;
@@ -172,27 +169,18 @@ $(document).ready(function() {
         }
     };
 
-
-    // function restart() {
-    //     correctCount = 0;
-    //     wrongCount = 0;
-    //     unanswered = 0;
-    //     currentLevel = 0;
-    //     createQuestion(currentLevel);
-    // }
+    // A function to add an image each time player guesses
 
     function addImage() {
-        //var questionImage = myQuestions[currentLevel].image;
-
+       
         var newImgDiv = $("<img>");
         newImgDiv.addClass("show-image img-rounded img-responsive");
         newImgDiv.attr("src", myQuestions[currentLevel].image);
         $("#answerImage").prepend(newImgDiv);
-        //newImgDiv.append(questionImage);
 
     };
 
-    //add div elements to hold these values on the html page
+    // A function for creating questions, and populating the answer buttons
     function createQuestion(x) {
         if (x < myQuestions.length) {
             $("#quizQuestions").text(myQuestions[x].question);
@@ -200,9 +188,6 @@ $(document).ready(function() {
             $(".answers-2").text(myQuestions[x].answers["2"]);
             $(".answers-3").text(myQuestions[x].answers["3"]);
             $(".answers-4").text(myQuestions[x].answers["4"]);
-            // $(".timer").text("Time Remaining: " + timeRemaining);
-
-            //$("#answerImage").empty();
 
             questionIntervalId = setInterval(function() {
                 timerMain();
@@ -211,7 +196,7 @@ $(document).ready(function() {
         } else {
             gameEnd();
         }
-        // console.log(myQuestions[x].answers["1"]);
+
     };
 
 
@@ -241,9 +226,8 @@ $(document).ready(function() {
     }
 
     function gameEnd() {
-       // $("#quizQuestions").text("Well done!");
-        $("#button").show();
-        $("#button").text("Yes, please!")
+        // $("#button").show();
+        // $("#button").text("Yes, please!")
         $("#correct").text("Correct:" + correctCount);
         $("#wrong").text("Incorrect:" + wrongCount);
     }
@@ -251,7 +235,6 @@ $(document).ready(function() {
     $(".answers").on("click", function() {
         var yourSelection = $(this).text();
 
-        // console.log('this is my current level ' + myQuestions[currentLevel]);
         console.log('this is my correct answer ' + myQuestions[currentLevel].correctAnswer);
         console.log(yourSelection);
 
@@ -260,15 +243,12 @@ $(document).ready(function() {
             correctAnswer();
             timerReset();
             console.log('if statement is true - interating currentLevel')
-            //currentLevel++;
             createQuestion();
 
         } else {
 
             wrongAnswer();
-            //timerReset();
             console.log('if statement is false - interating currentLevel')
-            //currentLevel++;
             gameEnd();
         }
     })
