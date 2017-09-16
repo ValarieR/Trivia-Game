@@ -9,16 +9,17 @@ body {
 }
 
 #quiz-container {
-	max-width: 650px;
+	max-width: 700px;
 	background-color: white;
 	padding: 50px;
 }
 
-#welcome {
+.welcome {
 	font-family: 'Patrick Hand SC', cursive;
-	font-size: 32px;
+	font-size: 25px;
 }
 
-button {
+#button,
+.answers {
 	color: #ee6179;
 }

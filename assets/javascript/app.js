@@ -143,7 +143,7 @@ $(document).ready(function() {
         //Welcome info and button disappear/change
         $("#questionAnswers").show();
         $("#image-container").empty();
-        $("#welcome").remove();
+        $(".welcome").remove();
         $("#button").remove();
         //$("#button").addClass("next");
         // $("#correct").text(correctCount);
