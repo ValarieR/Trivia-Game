@@ -23,3 +23,10 @@ body {
 .answers {
 	color: #ee6179;
 }
+
+#button,
+#counter,
+#correct,
+#wrong {
+	font-family: 'Patrick Hand SC', cursive;
+}
