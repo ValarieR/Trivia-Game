@@ -172,7 +172,7 @@ $(document).ready(function() {
     // A function to add an image each time player guesses
 
     function addImage() {
-       
+
         var newImgDiv = $("<img>");
         newImgDiv.addClass("show-image img-rounded img-responsive");
         newImgDiv.attr("src", myQuestions[currentLevel].image);
