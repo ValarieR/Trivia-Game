@@ -186,6 +186,7 @@ $(document).ready(function() {
         if (timeRemaining < 1) {
             timerReset();
             wrongAnswer();
+            $("#next").show();
         }
     };
 
@@ -194,9 +195,9 @@ $(document).ready(function() {
     function addImage() {
 
         var newImgDiv = $("<img>");
-        newImgDiv.addClass("show-image img-rounded img-responsive");
+        newImgDiv.addClass("responsive-img");
         newImgDiv.attr("src", myQuestions[currentLevel].image);
-        $("#answerImage").prepend(newImgDiv);
+        $("#answerImage").append(newImgDiv);
 
     };
 
@@ -273,6 +274,7 @@ $(document).ready(function() {
             wrongAnswer();
             console.log('if statement is false - interating currentLevel')
             gameEnd();
+            $("#next").show();
         }
     })
 
