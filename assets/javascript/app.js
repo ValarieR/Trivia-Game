@@ -206,6 +206,7 @@ $(document).ready(function() {
             $(".answers-4").text(myQuestions[x].answers["4"]);
 
             $("#next").hide();
+            $("#questionAnswers").show();
 
             questionIntervalId = setInterval(function() {
                 timerMain();
@@ -249,6 +250,9 @@ $(document).ready(function() {
         $("#again").show();
         $("#correct").text("Correct:" + correctCount);
         $("#wrong").text("Incorrect:" + wrongCount);
+        $("#quizQuestions").text("Thanks for playing!");
+        $("#questionAnswers").empty();
+        $("#next").hide();
     }
 
     $(".answers").on("click", function() {
@@ -256,6 +260,8 @@ $(document).ready(function() {
 
         console.log('this is my correct answer ' + myQuestions[currentLevel].correctAnswer);
         console.log(yourSelection);
+
+        $("#questionAnswers").hide();
 
         if ((yourSelection === myQuestions[currentLevel].correctAnswer) && (currentLevel < myQuestions.length)) {
 
