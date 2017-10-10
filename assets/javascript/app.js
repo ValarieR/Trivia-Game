@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+    $('.parallax').parallax();
+
     $("#questionAnswers").hide();
 
     // My array of questions, answers, images, and correct answers

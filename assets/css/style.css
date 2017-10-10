@@ -1,4 +1,17 @@
 body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Crimson Text', serif;
+	background-image: url(../images/background1.jpg);
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+/*body {
     background-image: url("../images/nasty-woman-pin.jpeg");
     background-repeat: repeat;
 }
@@ -29,4 +42,4 @@ body {
 #correct,
 #wrong {
 	font-family: 'Patrick Hand SC', cursive;
-}
+}*/
