@@ -260,7 +260,7 @@ $(document).ready(function() {
         if ((yourSelection === myQuestions[currentLevel].correctAnswer) && (currentLevel < myQuestions.length)) {
 
             correctAnswer();
-            timerReset();
+            //timerReset();
             console.log('if statement is true - interating currentLevel')
             $("#next").show();
             // createQuestion();
@@ -269,7 +269,7 @@ $(document).ready(function() {
 
             wrongAnswer();
             console.log('if statement is false - interating currentLevel')
-            gameEnd();
+            //gameEnd();
             $("#next").show();
         }
     })
