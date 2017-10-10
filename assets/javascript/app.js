@@ -3,6 +3,7 @@
 $(document).ready(function() {
 
     $("#questionAnswers").hide();
+    $("#next").hide();
 
     // My array of questions, answers, images, and correct answers
 
@@ -116,6 +117,7 @@ $(document).ready(function() {
 
     var timeRemaining = 16;
     var currentLevel = 0;
+    var nextBtn;
 
 
     console.log(myQuestions[currentLevel].correctAnswer);
@@ -128,7 +130,7 @@ $(document).ready(function() {
 
     function welcomeImage() {
         var img = $("<img>");
-        img.attr("src", "assets/images/nasty-welcome.png");
+        img.attr("src", "assets/images/mt-nasty.png");
         img.attr("id", "welcome-img");
         $('#image-container').append(img);
     };
@@ -144,12 +146,29 @@ $(document).ready(function() {
         $("#questionAnswers").show();
         $("#image-container").empty();
         $(".welcome").remove();
-        $("#button").remove();
+        $("#button").hide();
+        
+
+        
+
+
         //$("#button").addClass("next");
         // $("#correct").text(correctCount);
         // $("#wrong").text(wrongCount);
         //currentLevel = 0;
         createQuestion(currentLevel);
+
+    });
+
+
+    $("#next").on("click", function() {
+
+        event.preventDefault();
+
+        $("#answerImage").empty();
+        createQuestion(currentLevel);
+
+        console.log("next worked");
 
     });
 
@@ -190,6 +209,8 @@ $(document).ready(function() {
             $(".answers-3").text(myQuestions[x].answers["3"]);
             $(".answers-4").text(myQuestions[x].answers["4"]);
 
+            $("#next").hide();
+
             questionIntervalId = setInterval(function() {
                 timerMain();
             }, 1000);
@@ -206,9 +227,9 @@ $(document).ready(function() {
         var correctAnswer = myQuestions[currentLevel].correctAnswer;
 
         $("#quizQuestions").text("My Sister! Of course the correct answer was " + myQuestions[currentLevel].correctAnswer + "!");
-        answerTimeout = setTimeout(function() {
-            createQuestion(currentLevel);
-        }, 7000);
+        // answerTimeout = setTimeout(function() {
+        //     createQuestion(currentLevel);
+        // }, 7000);
         timerReset();
         addImage();
         correctCount++;
@@ -217,9 +238,9 @@ $(document).ready(function() {
 
     function wrongAnswer() {
         $("#quizQuestions").text("Sorry, Bro. The correct answer was " + myQuestions[currentLevel].correctAnswer + ".");
-        answerTimeout = setTimeout(function() {
-            createQuestion(currentLevel);
-        }, 7000);
+        // answerTimeout = setTimeout(function() {
+        //     createQuestion(currentLevel);
+        // }, 7000);
         timerReset();
         addImage();
         wrongCount++;
@@ -244,7 +265,8 @@ $(document).ready(function() {
             correctAnswer();
             timerReset();
             console.log('if statement is true - interating currentLevel')
-            createQuestion();
+            $("#next").show();
+            // createQuestion();
 
         } else {
 
