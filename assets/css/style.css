@@ -10,7 +10,8 @@ main {
     flex: 1 0 auto;
 }
 
-#welcome-img {
+#welcome-img,
+.responsive-img {
 	max-width: 50%;
 }
 

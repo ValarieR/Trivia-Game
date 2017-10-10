@@ -4,6 +4,8 @@ $(document).ready(function() {
 
     $("#questionAnswers").hide();
     $("#next").hide();
+    $("#again").hide();
+
 
     // My array of questions, answers, images, and correct answers
 
@@ -117,7 +119,6 @@ $(document).ready(function() {
 
     var timeRemaining = 16;
     var currentLevel = 0;
-    var nextBtn;
 
 
     console.log(myQuestions[currentLevel].correctAnswer);
@@ -147,15 +148,9 @@ $(document).ready(function() {
         $("#image-container").empty();
         $(".welcome").remove();
         $("#button").hide();
-        
 
-        
+        console.log("begin btn works");
 
-
-        //$("#button").addClass("next");
-        // $("#correct").text(correctCount);
-        // $("#wrong").text(wrongCount);
-        //currentLevel = 0;
         createQuestion(currentLevel);
 
     });
@@ -251,6 +246,7 @@ $(document).ready(function() {
     function gameEnd() {
         // $("#button").show();
         // $("#button").text("Yes, please!")
+        $("#again").show();
         $("#correct").text("Correct:" + correctCount);
         $("#wrong").text("Incorrect:" + wrongCount);
     }
