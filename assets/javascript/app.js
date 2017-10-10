@@ -2,8 +2,6 @@
 
 $(document).ready(function() {
 
-    $('.parallax').parallax();
-
     $("#questionAnswers").hide();
 
     // My array of questions, answers, images, and correct answers
@@ -131,6 +129,7 @@ $(document).ready(function() {
     function welcomeImage() {
         var img = $("<img>");
         img.attr("src", "assets/images/nasty-welcome.png");
+        img.attr("id", "welcome-img");
         $('#image-container').append(img);
     };
     welcomeImage();
