@@ -2,47 +2,76 @@
 <html>
 
 <head>
-    <title>Trivia</title>
-    <!--<link rel="stylesheet" type="text/css" href="assets/css/reset.css">-->
+    <title>Nasty Women Trivia</title>
+    <!--Link to Favicon-->
+    <!-- Viewport setting -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Link to Google Fonts Used -->
-    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Roboto" rel="stylesheet">
-    <!-- Link to jQuery -->
+    <!-- Font Awesome Link -->
+    <script src="https://use.fontawesome.com/f59413c927.js"></script>
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Josefin+Sans|Patrick+Hand+SC|Roboto" rel="stylesheet">
+    <!-- Link to Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- JQuery Link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Link to my css sheet -->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!-- Personal CSS Link -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div id="quiz-container">
-            <p class="welcome">Welcome to Nasty Trivia! Test your knowledge about a few brave, bright, creative, butt-kicking ladies.</p>
-            <p class="welcome">When you're done, stick around to scroll and read some wisdom from these Nasty Women!</p>
-            <div class="crossorigin">
-                <div id="image-container">
+    <main>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper center-align">
+                    <img id="nav-image" src="assets/images/nasty-woman-pin.png" class="responsive-img">
                 </div>
-                <div id="quizQuestions">
-                </div>
-                <div id="questionAnswers">
-                    <button type="button" class="btn btn-default answers-1 answers" value="1"></button>
-                    <button type="button" class="btn btn-default answers-2 answers" value="2"></button>
-                    <button type="button" class="btn btn-default answers-3 answers" value="3"></button>
-                    <button type="button" class="btn btn-default answers-4 answers" value="4"></button>
-                </div>
-                <br>
-                <div class="container">
-                    <button type="button" class="btn" id="button">Begin!</button>
-                    <div class="timer" data-seconds-left=30 id="counter"></div>
-                    <div id="correct"></div>
-                    <div id="wrong"></div>
-                </div>
-                <div id="answerImage">
+            </nav>
+        </div>
+        <div class="row center-align">
+            <div class="col s12 m10 offset-m1 l8 offset-l2">
+                <div id="quiz-container">
+                    <h1>Welcome to Nasty Trivia!</h1>
+                    <p class="welcome">Test your knowledge about a few brave, bright, creative, butt-kicking ladies.</p>
+                    <p class="welcome">When you're done, stick around to read some wisdom from these Nasty Women!</p>
+                    <div>
+                        <div id="image-container">
+                        </div>
+                        <div id="quizQuestions">
+                        </div>
+                        <div id="questionAnswers">
+                            <a class="btn black-text lime darken-1 answers-1 answers z-depth-4" value="1"></a>
+                            <a class="btn black-text lime darken-1 answers-2 answers z-depth-4" value="2"></a>
+                            <a class="btn black-text lime darken-1 answers-3 answers z-depth-4" value="3"></a>
+                            <a class="btn black-text lime darken-1 answers-4 answers z-depth-4" value="4"></a>
+                        </div>
+                        <br>
+                        <div class="container" id="info-box">
+                            <a class="waves-effect waves-teal btn lime darken-1 black-text" id="button">Begin!</a>
+                            <a class="waves-effect waves-teal btn lime darken-1 black-text" id="next">Next</a>
+                            <div class="timer" data-seconds-left=30 id="counter"></div>
+                            <div id="correct"></div>
+                            <div id="wrong"></div>
+                        </div>
+                        <div id="answerImage">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container center my-name">
+                <a href="https://valarier.github.io/valarie-regas/index.html" target="_blank" class="white-text">© 2017 Valarie Regas</a>
+            </div>
+        </div>
+    </footer>
+    <!-- links the JS/jQ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
 
