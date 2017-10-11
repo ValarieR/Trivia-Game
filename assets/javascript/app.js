@@ -144,10 +144,11 @@ $(document).ready(function() {
     $("#button").on("click", function() {
 
         //Welcome info and button disappear/change
-        $("#questionAnswers").show();
+        // $("#questionAnswers").show();
         $("#image-container").empty();
         $(".welcome").remove();
         $("#button").hide();
+        $("#quizQuestions").show();
 
         console.log("begin btn works");
 
@@ -182,6 +183,7 @@ $(document).ready(function() {
             timerReset();
             wrongAnswer();
             $("#next").show();
+            $("#questionAnswers").hide();
         }
     };
 
@@ -245,14 +247,20 @@ $(document).ready(function() {
     }
 
     function gameEnd() {
-        // $("#button").show();
-        // $("#button").text("Yes, please!")
         $("#again").show();
         $("#correct").text("Correct:" + correctCount);
         $("#wrong").text("Incorrect:" + wrongCount);
         $("#quizQuestions").text("Thanks for playing!");
-        $("#questionAnswers").empty();
+        $("#questionAnswers").hide();
         $("#next").hide();
+    }
+
+     function gameReset() {
+        $("#quizQuestions").hide();
+        $("#next").hide();
+        $("#again").hide();
+        timerReset();
+        createQuestion(currentLevel);
     }
 
     $(".answers").on("click", function() {
@@ -278,6 +286,13 @@ $(document).ready(function() {
             //gameEnd();
             $("#next").show();
         }
+    })
+
+
+    $("#again").on("click", function() {
+
+        console.log("again was clicked");
+        gameReset();
     })
 
 });
